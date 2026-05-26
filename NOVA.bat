@@ -193,7 +193,10 @@ set "assetPath="
 set "baseDir=%~dp0image ASCII assets"
 if /i "%cat%"=="STAR" for %%f in ("%baseDir%\Stars\*.txt") do set "assetPath=%%~ff"
 if /i "%cat%"=="GALAXY" for %%f in ("%baseDir%\Galaxies\*.txt") do set "assetPath=%%~ff"
-if /i "%cat%"=="PLANET" for %%f in ("%baseDir%\planets\*.txt") do set "assetPath=%%~ff"
+if /i "%cat%"=="PLANET" if /i "%spec%"=="Gas Giant" set "assetPath=%baseDir%\planets\GasGiant.txt"
+if /i "%cat%"=="PLANET" if /i "%spec%"=="Terrestrial" set "assetPath=%baseDir%\planets\Terrestrial.txt"
+if /i "%cat%"=="PLANET" if /i "%spec%"=="Ice Giant" set "assetPath=%baseDir%\planets\IceGiant.txt"
+if /i "%cat%"=="PLANET" if /i "%spec%"=="Dwarf" set "assetPath=%baseDir%\planets\Dwarf.txt"
 if /i "%cat%"=="NEBULA" for %%f in ("%baseDir%\Nebulas\*.txt") do set "assetPath=%%~ff"
 
 if defined assetPath (
