@@ -1,8 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: Change directory to the script's own folder to support unicode paths in findstr
-cd /d "%~dp0"
+:: Change to script's folder so %~nx0 works in findstr (avoids unicode path issues)
+cd /d "%~dp0" 2>nul
 
 :: Set console size for high-detail ASCII art
 mode con: cols=120 lines=80
@@ -276,14 +276,16 @@ echo [1] Stars
 echo [2] Galaxies
 echo [3] Planets
 echo [4] Nebulas
-echo [5] Back
+echo [5] Clusters
+echo [6] Back
 echo.
 set /p "bchoice=Select: "
 if "%bchoice%"=="1" set "bcat=STAR"
 if "%bchoice%"=="2" set "bcat=GALAXY"
 if "%bchoice%"=="3" set "bcat=PLANET"
 if "%bchoice%"=="4" set "bcat=NEBULA"
-if "%bchoice%"=="5" goto :WELCOME
+if "%bchoice%"=="5" set "bcat=CLUSTER"
+if "%bchoice%"=="6" goto :WELCOME
 if not defined bcat goto :BROWSE
 
 cls
