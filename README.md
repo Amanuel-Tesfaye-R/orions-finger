@@ -1,7 +1,7 @@
 # Orion's Finger & NOVA — Stellar Intelligence Terminal
 
 **Winner — 2019~2020 Science Fair Competition**  
-**Built by Amanuel Tesfaye | Grade 11 | Ethiopia**
+**Built by Amanuel Tesfaye | Grades 9–11 | Ethiopia**
 
 > *"NOVA doesn't just look at the stars; it knows them."*
 
@@ -9,11 +9,11 @@
 
 ## The Story
 
-I built this when I was 17 years old.
+I started this in Grade 9 and kept building until Grade 11.
 
-It started with a simple question: *What if I could point a laser at any star I searched for?*
+It began with a simple question: *What if I could point a laser at any star I searched for?*
 
-I was in Grade 11, obsessed with space, and had just learned enough batch scripting to be dangerous. So I started building. NOVA began as a text file of star data I compiled from Wikipedia, NASA's exoplanet archive, and astronomy reference books. I kept adding entries — stars, galaxies, nebulas, planets — until the database passed 800 objects.
+I was obsessed with space, and batch scripting was the only language I knew well enough, so that's where NOVA was born. It started as a text file of star data I compiled from Wikipedia, NASA's exoplanet archive, and astronomy reference books. I kept adding entries — stars, galaxies, nebulas, planets — across multiple revisions. By Grade 11, the database passed 800 objects.
 
 Then I decided it needed a body.
 
@@ -144,4 +144,4 @@ This project is shared as a reference and personal archive. Built for a science 
 
 ---
 
-*Amanuel Tesfaye — Grade 11, 2019~2020*
+*Amanuel Tesfaye — Grade 9 to 11, 2019~2020*
