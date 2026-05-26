@@ -1,6 +1,6 @@
 # Orion's Finger & NOVA
 
-**Winner — 2019~2020 Science Fair Competition**  
+**Winner - 2019~2020 Science Fair Competition**  
 **Built by Amanuel Tesfaye | Grades 9–11 | Ethiopia**
 
 ---
@@ -11,7 +11,7 @@ I started this in Grade 9 and kept building until Grade 11.
 
 I was into space and batch scripting was the only thing I knew, so I started with a text file of star data from Wikipedia, NASA, and astronomy books. Just kept adding to it. By Grade 11 the database passed 800 objects.
 
-Then I built the hardware to go with it — a Lego frame, three servo motors, an Arduino Uno, and a laser pointer. NOVA sends coordinates through a PowerShell script to the Arduino, and the arm moves to point the laser at whatever star you searched for.
+Then I built the hardware to go with it - a Lego frame, three servo motors, an Arduino Uno, and a laser pointer. NOVA sends coordinates through a PowerShell script to the Arduino, and the arm moves to point the laser at whatever star you searched for.
 
 Won first place at the 2019~2020 Science Fair.
 
@@ -98,4 +98,4 @@ Orion's Finger/
 
 ---
 
-*Amanuel Tesfaye — 2019~2020*
+*Amanuel Tesfaye - 2019~2020*
