@@ -1,6 +1,9 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Change directory to the script's own folder to support unicode paths in findstr
+cd /d "%~dp0"
+
 :: Set console size for high-detail ASCII art
 mode con: cols=120 lines=80
 
@@ -59,12 +62,30 @@ set "query="
 set /p "query=Enter Name (e.g. Sirius, Andromeda, Orion): "
 if "%query%"=="" goto :WELCOME
 
+:: Trim trailing spaces
+:TRIM_QUERY
+if "!query:~-1!"==" " (
+    set "query=!query:~0,-1!"
+    goto :TRIM_QUERY
+)
+if "%query%"=="" goto :WELCOME
+
+:: Convert M<num> or M <num> to Messier <num>
+set "testChar=%query:~0,1%"
+if /i "%testChar%"=="M" (
+    set "rest=%query:~1%"
+    if "!rest:~0,1!"==" " set "rest=!rest:~1!"
+    set "isNum=1"
+    for /f "delims=0123456789" %%x in ("!rest!") do set "isNum=0"
+    if "!isNum!"=="1" set "query=Messier !rest!"
+)
+
 set "found=0"
 echo.
 echo %C_GRAY%Searching for "%query%"...%C_RESET%
 
 :: Search in the data block
-for /f "tokens=1-9 delims=|" %%a in ('findstr /i /c:"%query%" "%~f0"') do (
+for /f "tokens=1-9 delims=|" %%a in ('findstr /i /c:"%query%" "%~nx0"') do (
     set "ok=0"
     if /i "%%b"=="STAR" set "ok=1"
     if /i "%%b"=="GALAXY" set "ok=1"
@@ -247,6 +268,8 @@ exit /b
 
 :: --- BROWSE CATEGORIES ---
 :BROWSE
+set "bcat="
+set "bchoice="
 cls
 echo %C_CYAN%--- BROWSE NOVA ---%C_RESET%
 echo [1] Stars
@@ -267,7 +290,7 @@ cls
 echo %C_YELLOW%Showing %bcat%s (Enter name to view details):%C_RESET%
 echo.
 set "count=0"
-for /f "tokens=1 delims=|" %%a in ('findstr "|%bcat%|" "%~f0"') do (
+for /f "tokens=1 delims=|" %%a in ('findstr "|%bcat%|" "%~nx0"') do (
     set /a "count+=1"
     echo  - %%a
     if !count! GEQ 30 (
@@ -277,6 +300,7 @@ for /f "tokens=1 delims=|" %%a in ('findstr "|%bcat%|" "%~f0"') do (
 )
 :BROWSE_POST
 echo.
+set "sq="
 set /p "sq=Enter full name to view or [B] to go back: "
 if /i "%sq%"=="B" goto :BROWSE
 call :SEARCH_SPECIFIC "%sq%"
@@ -288,7 +312,25 @@ set "foundInSpecific=0"
 
 if "%target%"=="" goto :BROWSE
 
-for /f "tokens=1-9 delims=|" %%a in ('findstr /i /c:"%target%" "%~f0"') do (
+:: Trim trailing spaces
+:TRIM_TARGET
+if "!target:~-1!"==" " (
+    set "target=!target:~0,-1!"
+    goto :TRIM_TARGET
+)
+if "%target%"=="" goto :BROWSE
+
+:: Convert M<num> or M <num> to Messier <num>
+set "testChar=%target:~0,1%"
+if /i "%testChar%"=="M" (
+    set "rest=%target:~1%"
+    if "!rest:~0,1!"==" " set "rest=!rest:~1!"
+    set "isNum=1"
+    for /f "delims=0123456789" %%x in ("!rest!") do set "isNum=0"
+    if "!isNum!"=="1" set "target=Messier !rest!"
+)
+
+for /f "tokens=1-9 delims=|" %%a in ('findstr /i /c:"%target%|" "%~nx0"') do (
     set "ok=0"
     if /i "%%b"=="STAR" set "ok=1"
     if /i "%%b"=="GALAXY" set "ok=1"
