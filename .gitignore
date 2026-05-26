@@ -1,0 +1,23 @@
+# Backup and restore files
+backup base code.txt
+*.backup
+*.bak
+
+# Python temporary files
+*.py
+__pycache__/
+*.pyc
+*.pyo
+
+# Windows junk
+Thumbs.db
+Desktop.ini
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
